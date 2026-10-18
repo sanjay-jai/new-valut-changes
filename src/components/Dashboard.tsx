@@ -142,8 +142,8 @@ export const Dashboard: React.FC = () => {
   return (
     <div className="w-full max-w-5xl mx-auto space-y-6 animate-in fade-in duration-200">
       {/* Top Profile & Health Score Header Card */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-7 shadow-2xl backdrop-blur-xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-indigo-500/10 via-transparent to-transparent pointer-events-none rounded-full blur-2xl" />
+      <div className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-sm backdrop-blur-md relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-indigo-50/70 via-transparent to-transparent pointer-events-none rounded-full blur-2xl" />
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative">
           {/* User info */}
@@ -152,75 +152,75 @@ export const Dashboard: React.FC = () => {
               <img
                 src={currentUser.avatarUrl}
                 alt={currentUser.name}
-                className="w-16 h-16 rounded-2xl border-2 border-indigo-500/40 shadow-lg object-cover bg-slate-800"
+                className="w-16 h-16 rounded-2xl border-2 border-indigo-200 shadow-xs object-cover bg-slate-100"
               />
-              <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-slate-900" />
+              <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white" />
             </div>
 
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
                   {currentUser.name}
                 </h1>
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200/60 font-semibold">
                   @{currentUser.username}
                 </span>
               </div>
-              <p className="text-xs text-slate-400 font-mono mt-0.5">
+              <p className="text-xs text-slate-500 font-mono mt-0.5">
                 {currentUser.email}
               </p>
               <div className="flex items-center gap-3 mt-2 text-[11px] text-slate-500">
                 <span className="flex items-center gap-1">
-                  <Clock className="w-3 h-3" /> Member since {new Date(currentUser.createdAt).toLocaleDateString()}
+                  <Clock className="w-3 h-3 text-slate-400" /> Member since {new Date(currentUser.createdAt).toLocaleDateString()}
                 </span>
                 <span>•</span>
-                <span className="text-emerald-400 font-medium">Session Active</span>
+                <span className="text-emerald-600 font-semibold">Session Active</span>
               </div>
             </div>
           </div>
 
           {/* Security Score Widget & Quick Actions */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-slate-950/70 p-4 rounded-xl border border-slate-800">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-slate-50/80 p-4 rounded-xl border border-slate-200">
             <div>
-              <div className="text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1 flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
+              <div className="text-[10px] uppercase font-bold tracking-wider text-slate-500 mb-1 flex items-center gap-1">
+                <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" />
                 Security Health Score
               </div>
               <div className="flex items-baseline gap-2">
                 <span className={`text-2xl font-extrabold ${
-                  securityScore >= 80 ? 'text-emerald-400' : securityScore >= 60 ? 'text-amber-400' : 'text-rose-400'
+                  securityScore >= 80 ? 'text-emerald-600' : securityScore >= 60 ? 'text-amber-600' : 'text-rose-600'
                 }`}>
                   {securityScore}%
                 </span>
-                <span className="text-xs text-slate-400 font-medium">
+                <span className="text-xs text-slate-500 font-medium">
                   {securityScore >= 80 ? 'Fortress Level' : securityScore >= 60 ? 'Good Protection' : 'Needs Attention'}
                 </span>
               </div>
-              <div className="w-36 h-1.5 bg-slate-800 rounded-full mt-2 overflow-hidden">
+              <div className="w-36 h-1.5 bg-slate-200 rounded-full mt-2 overflow-hidden">
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${
-                    securityScore >= 80 ? 'bg-emerald-400' : securityScore >= 60 ? 'bg-amber-400' : 'bg-rose-400'
+                    securityScore >= 80 ? 'bg-emerald-500' : securityScore >= 60 ? 'bg-amber-500' : 'bg-rose-500'
                   }`}
                   style={{ width: `${securityScore}%` }}
                 />
               </div>
             </div>
 
-            <div className="h-10 w-px bg-slate-800 hidden sm:block" />
+            <div className="h-10 w-px bg-slate-200 hidden sm:block" />
 
             {/* Quick Session Controls */}
             <div className="flex items-center gap-2">
               <button
                 onClick={lockSession}
-                className="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-colors border border-slate-700/60"
+                className="px-3 py-2 rounded-lg bg-white hover:bg-slate-100 text-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-colors border border-slate-200 shadow-xs"
               >
-                <Lock className="w-3.5 h-3.5 text-indigo-400" />
+                <Lock className="w-3.5 h-3.5 text-indigo-600" />
                 <span>Lock</span>
               </button>
 
               <button
                 onClick={logout}
-                className="px-3 py-2 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 text-xs font-semibold flex items-center gap-1.5 transition-colors border border-rose-500/20"
+                className="px-3 py-2 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-semibold flex items-center gap-1.5 transition-colors border border-rose-200"
               >
                 <LogOut className="w-3.5 h-3.5" />
                 <span>Logout</span>
@@ -230,13 +230,13 @@ export const Dashboard: React.FC = () => {
         </div>
 
         {/* Tab navigation bar */}
-        <div className="flex items-center gap-1 sm:gap-2 mt-6 pt-4 border-t border-slate-800 overflow-x-auto text-xs">
+        <div className="flex items-center gap-1 sm:gap-2 mt-6 pt-4 border-t border-slate-100 overflow-x-auto text-xs">
           <button
             onClick={() => setActiveTab('recovery')}
             className={`px-3.5 py-2 rounded-xl font-semibold transition-all flex items-center gap-2 whitespace-nowrap ${
               activeTab === 'recovery'
-                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                ? 'bg-indigo-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             <Key className="w-4 h-4" />
@@ -247,8 +247,8 @@ export const Dashboard: React.FC = () => {
             onClick={() => setActiveTab('password')}
             className={`px-3.5 py-2 rounded-xl font-semibold transition-all flex items-center gap-2 whitespace-nowrap ${
               activeTab === 'password'
-                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                ? 'bg-indigo-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             <Lock className="w-4 h-4" />
@@ -259,8 +259,8 @@ export const Dashboard: React.FC = () => {
             onClick={() => setActiveTab('sessions')}
             className={`px-3.5 py-2 rounded-xl font-semibold transition-all flex items-center gap-2 whitespace-nowrap ${
               activeTab === 'sessions'
-                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                ? 'bg-indigo-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             <Laptop className="w-4 h-4" />
@@ -271,8 +271,8 @@ export const Dashboard: React.FC = () => {
             onClick={() => setActiveTab('logs')}
             className={`px-3.5 py-2 rounded-xl font-semibold transition-all flex items-center gap-2 whitespace-nowrap ${
               activeTab === 'logs'
-                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                ? 'bg-indigo-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             <History className="w-4 h-4" />
@@ -287,17 +287,17 @@ export const Dashboard: React.FC = () => {
       {activeTab === 'recovery' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Card: Emergency Backup Codes */}
-          <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl backdrop-blur-xl">
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                <div className="p-2 rounded-lg bg-cyan-50 text-cyan-700 border border-cyan-200">
                   <Key className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-white">
+                  <h3 className="text-base font-bold text-slate-900">
                     Emergency Backup Keys
                   </h3>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-slate-500">
                     {currentUser.backupCodes.length} remaining active keys
                   </p>
                 </div>
@@ -305,29 +305,29 @@ export const Dashboard: React.FC = () => {
 
               <button
                 onClick={() => setShowCodes(prev => !prev)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
                 title={showCodes ? 'Hide codes' : 'Reveal codes'}
               >
                 {showCodes ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
 
-            <p className="text-xs text-slate-400 leading-relaxed mb-4">
+            <p className="text-xs text-slate-600 leading-relaxed mb-4">
               Keep these 16-character backup codes stored in a password manager. If you ever lose access to your primary email, each code can restore account access once.
             </p>
 
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs mb-4">
-              <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-[11px] font-sans text-slate-400">
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 font-mono text-xs mb-4">
+              <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-200 text-[11px] font-sans text-slate-500">
                 <span>Single-Use Passkeys</span>
                 {showCodes && currentUser.backupCodes.length > 0 && (
                   <button
                     onClick={copyBackupCodes}
-                    className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300 font-semibold"
+                    className="flex items-center gap-1 text-cyan-700 hover:text-cyan-800 font-semibold"
                   >
                     {hasCopiedCodes ? (
                       <>
-                        <Check className="w-3.5 h-3.5 text-emerald-400" />
-                        <span className="text-emerald-400">Copied</span>
+                        <Check className="w-3.5 h-3.5 text-emerald-600" />
+                        <span className="text-emerald-600">Copied</span>
                       </>
                     ) : (
                       <>
@@ -340,7 +340,7 @@ export const Dashboard: React.FC = () => {
               </div>
 
               {currentUser.backupCodes.length === 0 ? (
-                <div className="text-center py-3 text-rose-400 text-xs">
+                <div className="text-center py-3 text-rose-600 text-xs font-semibold">
                   All backup codes have been consumed! Regenerate immediately.
                 </div>
               ) : (
@@ -348,7 +348,7 @@ export const Dashboard: React.FC = () => {
                   {currentUser.backupCodes.map((code, idx) => (
                     <div
                       key={idx}
-                      className="p-1.5 rounded bg-slate-900 border border-slate-800/80 text-center tracking-wider text-cyan-300 select-all"
+                      className="p-2 rounded-lg bg-white border border-slate-200 text-center tracking-wider text-cyan-800 font-semibold select-all shadow-xs"
                     >
                       {showCodes ? code : '••••-••••-••••-••••'}
                     </div>
@@ -360,7 +360,7 @@ export const Dashboard: React.FC = () => {
             <button
               onClick={handleRegenerateCodes}
               disabled={isRegeneratingCodes}
-              className="w-full py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700/60 transition-colors flex items-center justify-center gap-2"
+              className="w-full py-2.5 px-3 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 transition-colors flex items-center justify-center gap-2 shadow-xs"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isRegeneratingCodes ? 'animate-spin' : ''}`} />
               <span>Regenerate New Backup Codes</span>
@@ -370,17 +370,17 @@ export const Dashboard: React.FC = () => {
           {/* Card: Two-Factor Authentication & Security Questions */}
           <div className="space-y-6">
             {/* 2FA Card */}
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl backdrop-blur-xl">
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm">
               <div className="flex items-start justify-between gap-4 mb-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                  <div className="p-2 rounded-lg bg-purple-50 text-purple-700 border border-purple-200">
                     <Smartphone className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-white">
+                    <h3 className="text-base font-bold text-slate-900">
                       Two-Factor Authentication (2FA)
                     </h3>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-slate-500">
                       Requires 6-digit Authenticator code on sign in
                     </p>
                   </div>
@@ -391,7 +391,7 @@ export const Dashboard: React.FC = () => {
                   type="button"
                   onClick={toggle2FA}
                   className={`w-12 h-6 flex items-center rounded-full p-1 transition-colors duration-200 ease-in-out ${
-                    currentUser.twoFactorEnabled ? 'bg-purple-600' : 'bg-slate-800'
+                    currentUser.twoFactorEnabled ? 'bg-purple-600' : 'bg-slate-200'
                   }`}
                 >
                   <div
@@ -402,13 +402,13 @@ export const Dashboard: React.FC = () => {
                 </button>
               </div>
 
-              <div className="text-xs text-slate-400 leading-relaxed pt-2">
+              <div className="text-xs text-slate-600 leading-relaxed pt-2">
                 Status:{' '}
-                <strong className={currentUser.twoFactorEnabled ? 'text-purple-300' : 'text-slate-400'}>
+                <strong className={currentUser.twoFactorEnabled ? 'text-purple-700' : 'text-slate-500'}>
                   {currentUser.twoFactorEnabled ? 'Enabled & Enforced' : 'Disabled'}
                 </strong>
                 {currentUser.twoFactorEnabled && (
-                  <div className="mt-2 p-2.5 rounded-lg bg-purple-950/20 border border-purple-500/20 text-purple-300 text-[11px] font-mono">
+                  <div className="mt-2 p-2.5 rounded-lg bg-purple-50 border border-purple-200 text-purple-800 text-[11px] font-mono">
                     Secret Key: {currentUser.twoFactorSecret || 'JBSWY3DPEHPK3PXP'}
                   </div>
                 )}
@@ -416,17 +416,17 @@ export const Dashboard: React.FC = () => {
             </div>
 
             {/* Security Questions Card */}
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl backdrop-blur-xl">
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                  <div className="p-2 rounded-lg bg-amber-50 text-amber-700 border border-amber-200">
                     <ShieldCheck className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-white">
+                    <h3 className="text-base font-bold text-slate-900">
                       Security Question Challenge
                     </h3>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-slate-500">
                       Fallback verification mechanism
                     </p>
                   </div>
@@ -434,18 +434,18 @@ export const Dashboard: React.FC = () => {
 
                 <button
                   onClick={() => setIsEditingQuestions(prev => !prev)}
-                  className="text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors"
+                  className="text-xs font-semibold text-amber-700 hover:text-amber-800 transition-colors"
                 >
                   {isEditingQuestions ? 'Cancel' : 'Update'}
                 </button>
               </div>
 
               {!isEditingQuestions ? (
-                <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs">
-                  <div className="text-[10px] text-amber-400 uppercase font-bold tracking-wider mb-1">
+                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+                  <div className="text-[10px] text-amber-700 uppercase font-bold tracking-wider mb-1">
                     Configured Question:
                   </div>
-                  <div className="text-slate-200 font-medium">
+                  <div className="text-slate-900 font-semibold">
                     {currentUser.securityQuestions?.[0]?.question || 'No question registered'}
                   </div>
                   <div className="text-[11px] text-slate-500 mt-1">
@@ -455,16 +455,16 @@ export const Dashboard: React.FC = () => {
               ) : (
                 <form onSubmit={handleSaveSecurityQuestion} className="space-y-3 pt-2">
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                    <label className="block text-[11px] font-semibold text-slate-700 mb-1">
                       Choose Question
                     </label>
                     <select
                       value={selectedQuestion}
                       onChange={e => setSelectedQuestion(e.target.value)}
-                      className="w-full p-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white"
+                      className="w-full p-2 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-900"
                     >
                       {PRESET_SECURITY_QUESTIONS.map((q, idx) => (
-                        <option key={idx} value={q} className="bg-slate-900">
+                        <option key={idx} value={q} className="bg-white text-slate-900">
                           {q}
                         </option>
                       ))}
@@ -472,7 +472,7 @@ export const Dashboard: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                    <label className="block text-[11px] font-semibold text-slate-700 mb-1">
                       Answer
                     </label>
                     <input
@@ -480,14 +480,14 @@ export const Dashboard: React.FC = () => {
                       value={newAnswer}
                       onChange={e => setNewAnswer(e.target.value)}
                       placeholder="Your secret answer"
-                      className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white"
+                      className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-amber-600"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={!newAnswer.trim()}
-                    className="w-full py-2 rounded-lg bg-amber-600 hover:bg-amber-500 disabled:opacity-50 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5"
+                    className="w-full py-2 rounded-lg bg-amber-600 hover:bg-amber-700 disabled:opacity-50 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-xs"
                   >
                     {questionsSaved ? (
                       <>
@@ -507,12 +507,12 @@ export const Dashboard: React.FC = () => {
 
       {/* 2. CHANGE PASSWORD TAB */}
       {activeTab === 'password' && (
-        <div className="max-w-xl mx-auto bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl backdrop-blur-xl">
+        <div className="max-w-xl mx-auto bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-sm">
           <div className="mb-6">
-            <h3 className="text-lg font-bold text-white tracking-tight">
+            <h3 className="text-lg font-bold text-slate-900 tracking-tight">
               Change Account Password
             </h3>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               Ensure your account is protected with modern cryptographic hashing.
             </p>
           </div>
@@ -521,14 +521,14 @@ export const Dashboard: React.FC = () => {
             <div
               className={`mb-4 p-3.5 rounded-xl border text-xs flex items-center gap-2 ${
                 passwordStatus.type === 'success'
-                  ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
-                  : 'bg-rose-500/10 border-rose-500/30 text-rose-300'
+                  ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
+                  : 'bg-rose-50 border-rose-200 text-rose-800'
               }`}
             >
               {passwordStatus.type === 'success' ? (
-                <CheckCircle2 className="w-4 h-4 shrink-0" />
+                <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
               ) : (
-                <AlertCircle className="w-4 h-4 shrink-0" />
+                <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
               )}
               <span>{passwordStatus.message}</span>
             </div>
@@ -536,7 +536,7 @@ export const Dashboard: React.FC = () => {
 
           <form onSubmit={handleChangePasswordSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
                 Current Password
               </label>
               <input
@@ -544,12 +544,12 @@ export const Dashboard: React.FC = () => {
                 value={currentPass}
                 onChange={e => setCurrentPass(e.target.value)}
                 placeholder="••••••••••••"
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm font-mono focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-mono focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
                 New Password
               </label>
               <div className="relative">
@@ -558,12 +558,12 @@ export const Dashboard: React.FC = () => {
                   value={newPass}
                   onChange={e => setNewPass(e.target.value)}
                   placeholder="New strong password"
-                  className="w-full pl-4 pr-10 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm font-mono focus:outline-none focus:border-indigo-500"
+                  className="w-full pl-4 pr-10 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-mono focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPass(p => !p)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 >
                   {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -573,10 +573,10 @@ export const Dashboard: React.FC = () => {
               {newPass.length > 0 && (
                 <div className="mt-2 space-y-1.5">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-400">Strength:</span>
-                    <span className="font-bold text-white">{newPassAnalysis.label}</span>
+                    <span className="text-slate-500">Strength:</span>
+                    <span className="font-bold text-slate-900">{newPassAnalysis.label}</span>
                   </div>
-                  <div className="grid grid-cols-4 gap-1.5 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                  <div className="grid grid-cols-4 gap-1.5 h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
                     <div className={`h-full rounded-full ${newPassAnalysis.score >= 1 ? newPassAnalysis.color : 'bg-transparent'}`} />
                     <div className={`h-full rounded-full ${newPassAnalysis.score >= 2 ? newPassAnalysis.color : 'bg-transparent'}`} />
                     <div className={`h-full rounded-full ${newPassAnalysis.score >= 3 ? newPassAnalysis.color : 'bg-transparent'}`} />
@@ -587,7 +587,7 @@ export const Dashboard: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
                 Confirm New Password
               </label>
               <input
@@ -595,14 +595,14 @@ export const Dashboard: React.FC = () => {
                 value={confirmPass}
                 onChange={e => setConfirmPass(e.target.value)}
                 placeholder="Re-enter new password"
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm font-mono focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm font-mono focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100"
               />
             </div>
 
             <button
               type="submit"
               disabled={isChangingPass || newPassAnalysis.score < 2 || newPass !== confirmPass}
-              className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-semibold text-sm shadow-lg shadow-indigo-600/25 transition-all flex items-center justify-center gap-2"
+              className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-semibold text-sm shadow-xs transition-all flex items-center justify-center gap-2"
             >
               {isChangingPass ? (
                 <>
@@ -622,13 +622,13 @@ export const Dashboard: React.FC = () => {
 
       {/* 3. ACTIVE SESSIONS TAB */}
       {activeTab === 'sessions' && (
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-7 shadow-xl backdrop-blur-xl">
+        <div className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
-              <h3 className="text-base font-bold text-white">
+              <h3 className="text-base font-bold text-slate-900">
                 Active Devices & Authorized Sessions
               </h3>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="text-xs text-slate-500 mt-0.5">
                 Manage all devices currently authenticated to your account.
               </p>
             </div>
@@ -636,7 +636,7 @@ export const Dashboard: React.FC = () => {
             {currentUser.activeSessions.length > 1 && (
               <button
                 onClick={revokeAllOtherSessions}
-                className="px-3.5 py-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/20 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                className="px-3.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-semibold flex items-center gap-1.5 transition-colors"
               >
                 <Trash2 className="w-3.5 h-3.5" />
                 <span>Revoke All Other Devices</span>
@@ -650,12 +650,12 @@ export const Dashboard: React.FC = () => {
                 key={session.id}
                 className={`p-4 rounded-xl border flex items-center justify-between transition-all ${
                   session.isCurrent
-                    ? 'bg-indigo-950/20 border-indigo-500/30'
-                    : 'bg-slate-950/60 border-slate-800'
+                    ? 'bg-indigo-50/50 border-indigo-200 shadow-xs'
+                    : 'bg-slate-50 border-slate-200 hover:bg-white'
                 }`}
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="p-2.5 rounded-lg bg-slate-800 text-indigo-400">
+                  <div className="p-2.5 rounded-lg bg-white border border-slate-200 text-indigo-600 shadow-xs">
                     {session.device.toLowerCase().includes('iphone') || session.device.toLowerCase().includes('android') ? (
                       <Smartphone className="w-5 h-5" />
                     ) : (
@@ -664,20 +664,20 @@ export const Dashboard: React.FC = () => {
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-white">
+                      <span className="text-sm font-semibold text-slate-900">
                         {session.device}
                       </span>
                       {session.isCurrent && (
-                        <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                           Current Device
                         </span>
                       )}
                     </div>
-                    <div className="text-xs text-slate-400 mt-0.5 flex flex-wrap items-center gap-2 font-mono">
+                    <div className="text-xs text-slate-500 mt-0.5 flex flex-wrap items-center gap-2 font-mono">
                       <span>{session.browser}</span>
                       <span>•</span>
                       <span className="flex items-center gap-1">
-                        <Globe className="w-3 h-3 text-slate-500" />
+                        <Globe className="w-3 h-3 text-slate-400" />
                         {session.location} ({session.ipAddress})
                       </span>
                     </div>
@@ -688,7 +688,7 @@ export const Dashboard: React.FC = () => {
                   {!session.isCurrent && (
                     <button
                       onClick={() => revokeSession(session.id)}
-                      className="text-xs font-semibold text-rose-400 hover:text-rose-300 p-2 rounded-lg hover:bg-slate-800 transition-colors"
+                      className="text-xs font-semibold text-rose-600 hover:text-rose-700 p-2 rounded-lg hover:bg-rose-50 transition-colors"
                     >
                       Revoke
                     </button>
@@ -702,13 +702,13 @@ export const Dashboard: React.FC = () => {
 
       {/* 4. SECURITY AUDIT LOG TAB */}
       {activeTab === 'logs' && (
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-7 shadow-xl backdrop-blur-xl">
+        <div className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-sm">
           <div className="mb-6">
-            <h3 className="text-base font-bold text-white flex items-center gap-2">
-              <History className="w-5 h-5 text-indigo-400" />
+            <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+              <History className="w-5 h-5 text-indigo-600" />
               Security Audit Trail
             </h3>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-slate-500 mt-0.5">
               Immutable ledger of recent authentication and credential recovery events.
             </p>
           </div>
@@ -722,22 +722,22 @@ export const Dashboard: React.FC = () => {
               currentUser.auditLogs.map(log => (
                 <div
                   key={log.id}
-                  className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start justify-between gap-4 text-xs"
+                  className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start justify-between gap-4 text-xs hover:bg-white transition-colors"
                 >
                   <div className="flex items-start gap-3">
                     <div className={`p-1.5 rounded-lg mt-0.5 ${
                       log.type === 'login_success'
-                        ? 'bg-emerald-500/10 text-emerald-400'
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                         : log.type === 'login_failed'
-                        ? 'bg-rose-500/10 text-rose-400'
+                        ? 'bg-rose-50 text-rose-700 border border-rose-200'
                         : log.type === 'password_reset' || log.type === 'password_changed'
-                        ? 'bg-cyan-500/10 text-cyan-400'
-                        : 'bg-indigo-500/10 text-indigo-400'
+                        ? 'bg-cyan-50 text-cyan-700 border border-cyan-200'
+                        : 'bg-indigo-50 text-indigo-700 border border-indigo-200'
                     }`}>
                       <ShieldCheck className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="font-semibold text-slate-200">
+                      <div className="font-semibold text-slate-900">
                         {log.description}
                       </div>
                       <div className="text-[11px] text-slate-500 font-mono mt-0.5">
@@ -746,7 +746,7 @@ export const Dashboard: React.FC = () => {
                     </div>
                   </div>
 
-                  <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-400 shrink-0">
+                  <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-white border border-slate-200 text-slate-600 shrink-0">
                     {log.type.replace(/_/g, ' ')}
                   </span>
                 </div>

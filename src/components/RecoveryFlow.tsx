@@ -317,13 +317,13 @@ export const RecoveryFlow: React.FC<Props> = ({
   };
 
   return (
-    <div className="w-full max-w-lg bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-xl relative overflow-hidden transition-all">
+    <div className="w-full max-w-lg bg-white border border-slate-200/90 rounded-2xl p-6 md:p-8 shadow-sm backdrop-blur-md relative overflow-hidden transition-all">
       {/* Decorative background glow */}
-      <div className="absolute -top-24 -left-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-24 -left-24 w-48 h-48 bg-indigo-50 rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-slate-50 rounded-full blur-2xl pointer-events-none" />
 
       {/* Progress / Step indicator bar */}
-      <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-800 text-xs">
+      <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100 text-xs">
         <button
           onClick={() => {
             if (step === 'identify') onBackToLogin();
@@ -332,13 +332,13 @@ export const RecoveryFlow: React.FC<Props> = ({
             else setStep('select_method');
             setErrorMessage(null);
           }}
-          className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors"
+          className="flex items-center gap-1.5 text-slate-500 hover:text-slate-800 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>{step === 'identify' ? 'Back to Login' : 'Previous Step'}</span>
         </button>
 
-        <span className="font-mono text-indigo-400 font-semibold uppercase tracking-wider text-[11px]">
+        <span className="font-mono text-indigo-600 font-semibold uppercase tracking-wider text-[11px]">
           {step === 'identify' && 'Step 1 of 3: Identify'}
           {step === 'select_method' && 'Step 2 of 3: Method'}
           {(step === 'verify_otp' || step === 'verify_backup' || step === 'verify_question') && 'Step 2 of 3: Verify'}
@@ -349,8 +349,8 @@ export const RecoveryFlow: React.FC<Props> = ({
 
       {/* Error Banner */}
       {errorMessage && (
-        <div className="mb-5 p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5 animate-in fade-in">
-          <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+        <div className="mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2.5 animate-in fade-in">
+          <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
           <div className="flex-1 font-medium leading-relaxed">{errorMessage}</div>
         </div>
       )}
@@ -359,20 +359,20 @@ export const RecoveryFlow: React.FC<Props> = ({
       {step === 'identify' && (
         <div>
           <div className="mb-6 text-center">
-            <div className="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center mx-auto mb-3 shadow-inner">
+            <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 border border-indigo-200/80 flex items-center justify-center mx-auto mb-3 shadow-xs">
               <ShieldAlert className="w-6 h-6" />
             </div>
-            <h2 className="text-xl font-bold text-white tracking-tight">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
               Account Recovery
             </h2>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               Enter your email address or username to explore available recovery options.
             </p>
           </div>
 
           <form onSubmit={handleIdentify} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
                 Email Address or Username
               </label>
               <input
@@ -381,13 +381,13 @@ export const RecoveryFlow: React.FC<Props> = ({
                 onChange={e => setIdentifier(e.target.value)}
                 placeholder="e.g. sanjailakshu@gmail.com or sanjai"
                 autoFocus
-                className="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 transition-all text-sm"
               />
             </div>
 
             {/* Quick Demo Pre-fills */}
             <div className="pt-2">
-              <div className="text-[11px] font-medium text-slate-400 mb-2">
+              <div className="text-[11px] font-medium text-slate-500 mb-2">
                 Or test with demo accounts:
               </div>
               <div className="flex flex-wrap gap-2">
@@ -399,7 +399,7 @@ export const RecoveryFlow: React.FC<Props> = ({
                       setIdentifier(acc.email);
                       setErrorMessage(null);
                     }}
-                    className="text-xs px-2.5 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-800 text-slate-300 border border-slate-700/60 transition-colors flex items-center gap-1.5 font-mono"
+                    className="text-xs px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 transition-colors flex items-center gap-1.5 font-mono shadow-xs"
                   >
                     <span>{acc.email}</span>
                   </button>
@@ -410,7 +410,7 @@ export const RecoveryFlow: React.FC<Props> = ({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full mt-4 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-semibold text-sm shadow-lg shadow-indigo-600/25 transition-all flex items-center justify-center gap-2"
+              className="w-full mt-4 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-semibold text-sm shadow-xs transition-all flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>
@@ -432,12 +432,12 @@ export const RecoveryFlow: React.FC<Props> = ({
       {step === 'select_method' && (
         <div>
           <div className="mb-6">
-            <h2 className="text-xl font-bold text-white tracking-tight">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
               Choose Recovery Method
             </h2>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               Select one of the secure recovery methods registered for{' '}
-              <strong className="text-indigo-300 font-mono">{resolvedUserEmail}</strong>.
+              <strong className="text-indigo-600 font-mono">{resolvedUserEmail}</strong>.
             </p>
           </div>
 
@@ -447,21 +447,21 @@ export const RecoveryFlow: React.FC<Props> = ({
               <button
                 onClick={startEmailOtp}
                 disabled={isSubmitting}
-                className="w-full p-4 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-indigo-500 hover:bg-slate-800/50 transition-all text-left flex items-start gap-3.5 group"
+                className="w-full p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/40 transition-all text-left flex items-start gap-3.5 group shadow-xs"
               >
-                <div className="p-2.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 group-hover:bg-indigo-500/20 transition-colors">
+                <div className="p-2.5 rounded-lg bg-indigo-50 text-indigo-600 border border-indigo-200 group-hover:bg-indigo-100 transition-colors">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-white group-hover:text-indigo-300 transition-colors">
+                    <span className="text-sm font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
                       Email Verification Code (OTP)
                     </span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                       Recommended
                     </span>
                   </div>
-                  <p className="text-xs text-slate-400 mt-1">
+                  <p className="text-xs text-slate-500 mt-1">
                     Receive a 6-digit security passkey in your mailbox to verify identity.
                   </p>
                 </div>
@@ -475,21 +475,21 @@ export const RecoveryFlow: React.FC<Props> = ({
                   setErrorMessage(null);
                   setStep('verify_backup');
                 }}
-                className="w-full p-4 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-cyan-500 hover:bg-slate-800/50 transition-all text-left flex items-start gap-3.5 group"
+                className="w-full p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-cyan-300 hover:bg-cyan-50/40 transition-all text-left flex items-start gap-3.5 group shadow-xs"
               >
-                <div className="p-2.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 group-hover:bg-cyan-500/20 transition-colors">
+                <div className="p-2.5 rounded-lg bg-cyan-50 text-cyan-600 border border-cyan-200 group-hover:bg-cyan-100 transition-colors">
                   <Key className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">
+                    <span className="text-sm font-bold text-slate-900 group-hover:text-cyan-600 transition-colors">
                       Emergency Backup Recovery Code
                     </span>
-                    <span className="text-[10px] font-mono text-cyan-400">
+                    <span className="text-[10px] font-mono text-cyan-700 font-semibold">
                       16-char
                     </span>
                   </div>
-                  <p className="text-xs text-slate-400 mt-1">
+                  <p className="text-xs text-slate-500 mt-1">
                     Use one of your pre-generated master emergency codes (e.g. ABCD-EFGH-...).
                   </p>
                 </div>
@@ -503,18 +503,18 @@ export const RecoveryFlow: React.FC<Props> = ({
                   setErrorMessage(null);
                   setStep('verify_question');
                 }}
-                className="w-full p-4 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-amber-500 hover:bg-slate-800/50 transition-all text-left flex items-start gap-3.5 group"
+                className="w-full p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-amber-300 hover:bg-amber-50/40 transition-all text-left flex items-start gap-3.5 group shadow-xs"
               >
-                <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 group-hover:bg-amber-500/20 transition-colors">
+                <div className="p-2.5 rounded-lg bg-amber-50 text-amber-600 border border-amber-200 group-hover:bg-amber-100 transition-colors">
                   <HelpCircle className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-white group-hover:text-amber-300 transition-colors">
+                    <span className="text-sm font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
                       Security Questions Challenge
                     </span>
                   </div>
-                  <p className="text-xs text-slate-400 mt-1">
+                  <p className="text-xs text-slate-500 mt-1">
                     Answer your configured personal verification security question.
                   </p>
                 </div>
@@ -528,16 +528,16 @@ export const RecoveryFlow: React.FC<Props> = ({
       {step === 'verify_otp' && (
         <div>
           <div className="mb-6 text-center">
-            <div className="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center mx-auto mb-3 shadow-inner">
+            <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 border border-indigo-200/80 flex items-center justify-center mx-auto mb-3 shadow-xs">
               <Mail className="w-6 h-6" />
             </div>
-            <h2 className="text-xl font-bold text-white tracking-tight">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
               Enter Verification Code
             </h2>
-            <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
+            <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
               We dispatched a 6-digit passcode to{' '}
-              <strong className="text-indigo-300 font-mono">{resolvedUserEmail}</strong>.
-              Check the <span className="text-indigo-400 font-semibold">Security Mailbox</span> at the bottom right.
+              <strong className="text-indigo-600 font-mono">{resolvedUserEmail}</strong>.
+              Check the <span className="text-indigo-600 font-semibold">Security Mailbox</span> at the bottom right.
             </p>
           </div>
 
@@ -554,18 +554,18 @@ export const RecoveryFlow: React.FC<Props> = ({
                   value={digit}
                   onChange={e => handleOtpChange(idx, e.target.value)}
                   onKeyDown={e => handleOtpKeyDown(idx, e)}
-                  className="w-11 h-14 sm:w-12 sm:h-16 text-center text-xl sm:text-2xl font-mono font-bold rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/40 transition-all shadow-inner"
+                  className="w-11 h-14 sm:w-12 sm:h-16 text-center text-xl sm:text-2xl font-mono font-bold rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 transition-all shadow-xs"
                 />
               ))}
             </div>
 
-            <div className="flex items-center justify-between text-xs text-slate-400 px-1">
+            <div className="flex items-center justify-between text-xs text-slate-500 px-1">
               <span>Didn&apos;t receive code?</span>
               <button
                 type="button"
                 onClick={handleResendOtp}
                 disabled={resendCooldown > 0 || isSubmitting}
-                className="text-indigo-400 hover:text-indigo-300 disabled:opacity-40 font-semibold transition-colors"
+                className="text-indigo-600 hover:text-indigo-700 disabled:opacity-40 font-semibold transition-colors"
               >
                 {resendCooldown > 0 ? `Resend code in ${resendCooldown}s` : 'Resend Code Now'}
               </button>
@@ -574,7 +574,7 @@ export const RecoveryFlow: React.FC<Props> = ({
             <button
               type="submit"
               disabled={isSubmitting || otpDigits.join('').length !== 6}
-              className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-semibold text-sm shadow-lg shadow-indigo-600/25 transition-all flex items-center justify-center gap-2"
+              className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-semibold text-sm shadow-xs transition-all flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>
@@ -596,20 +596,20 @@ export const RecoveryFlow: React.FC<Props> = ({
       {step === 'verify_backup' && (
         <div>
           <div className="mb-6 text-center">
-            <div className="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center mx-auto mb-3 shadow-inner">
+            <div className="w-12 h-12 rounded-xl bg-cyan-50 text-cyan-700 border border-cyan-200 flex items-center justify-center mx-auto mb-3 shadow-xs">
               <Key className="w-6 h-6" />
             </div>
-            <h2 className="text-xl font-bold text-white tracking-tight">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
               Emergency Backup Code
             </h2>
-            <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
+            <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
               Enter one of your 16-character backup recovery codes. Note: Once used, this backup code is permanently retired.
             </p>
           </div>
 
           <form onSubmit={handleVerifyBackupCode} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
                 16-Character Backup Code
               </label>
               <input
@@ -618,25 +618,25 @@ export const RecoveryFlow: React.FC<Props> = ({
                 onChange={handleBackupCodeChange}
                 placeholder="XXXX-XXXX-XXXX-XXXX"
                 autoFocus
-                className="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-center font-mono text-base tracking-widest uppercase placeholder-slate-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all shadow-inner"
+                className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-center font-mono text-base tracking-widest uppercase placeholder-slate-400 focus:outline-none focus:bg-white focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100 transition-all shadow-xs"
               />
             </div>
 
             {/* Quick Demo Code Hint */}
-            <div className="p-3 rounded-lg bg-cyan-950/20 border border-cyan-500/20 text-xs text-cyan-300 flex items-start gap-2">
-              <Key className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+            <div className="p-3 rounded-xl bg-cyan-50/70 border border-cyan-200 text-xs text-cyan-900 flex items-start gap-2">
+              <Key className="w-4 h-4 text-cyan-600 shrink-0 mt-0.5" />
               <div>
                 <strong>Demo Hint:</strong> If testing account{' '}
-                <span className="font-mono text-white">sanjailakshu@gmail.com</span>, you can use{' '}
-                <span className="font-mono font-bold text-white">VAUL-7X9B-K3M4-P9L2</span> or{' '}
-                <span className="font-mono font-bold text-white">AUTH-8Q2W-9R5T-1Y6U</span>.
+                <span className="font-mono text-cyan-800 font-semibold">sanjailakshu@gmail.com</span>, you can use{' '}
+                <span className="font-mono font-bold text-cyan-900">VAUL-7X9B-K3M4-P9L2</span> or{' '}
+                <span className="font-mono font-bold text-cyan-900">AUTH-8Q2W-9R5T-1Y6U</span>.
               </div>
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting || backupCodeInput.replace(/-/g, '').length < 16}
-              className="w-full py-3 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-500 disabled:opacity-50 text-white font-semibold text-sm shadow-lg shadow-cyan-600/25 transition-all flex items-center justify-center gap-2"
+              className="w-full py-3 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-white font-semibold text-sm shadow-xs transition-all flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>
@@ -658,29 +658,29 @@ export const RecoveryFlow: React.FC<Props> = ({
       {step === 'verify_question' && (
         <div>
           <div className="mb-6 text-center">
-            <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center mx-auto mb-3 shadow-inner">
+            <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 border border-amber-200 flex items-center justify-center mx-auto mb-3 shadow-xs">
               <HelpCircle className="w-6 h-6" />
             </div>
-            <h2 className="text-xl font-bold text-white tracking-tight">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
               Security Question
             </h2>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               Answer the question associated with your registered profile.
             </p>
           </div>
 
           <form onSubmit={handleVerifySecurityQuestion} className="space-y-4">
-            <div className="p-3.5 rounded-xl bg-slate-950/90 border border-slate-800">
-              <div className="text-[11px] font-semibold text-amber-400 uppercase tracking-wider mb-1">
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="text-[11px] font-semibold text-amber-700 uppercase tracking-wider mb-1">
                 Security Question:
               </div>
-              <div className="text-sm font-medium text-white">
+              <div className="text-sm font-semibold text-slate-900">
                 {activeQuestion?.question || 'What was the name of your first childhood pet?'}
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
                 Your Answer
               </label>
               <input
@@ -689,19 +689,19 @@ export const RecoveryFlow: React.FC<Props> = ({
                 onChange={e => setSecurityAnswerInput(e.target.value)}
                 placeholder="Enter answer (case-insensitive)"
                 autoFocus
-                className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-sm"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-amber-600 focus:ring-2 focus:ring-amber-100 transition-all text-sm"
               />
             </div>
 
             {/* Hint for tester */}
-            <div className="text-[11px] text-slate-400 px-1">
-              💡 Demo test answer for pet is <strong className="text-slate-200">Rusty</strong> or city is <strong className="text-slate-200">Seattle</strong>.
+            <div className="text-[11px] text-slate-500 px-1">
+              💡 Demo test answer for pet is <strong className="text-slate-800">Rusty</strong> or city is <strong className="text-slate-800">Seattle</strong>.
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting || !securityAnswerInput.trim()}
-              className="w-full py-3 px-4 rounded-xl bg-amber-600 hover:bg-amber-500 disabled:opacity-50 text-white font-semibold text-sm shadow-lg shadow-amber-600/25 transition-all flex items-center justify-center gap-2"
+              className="w-full py-3 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 disabled:opacity-50 text-white font-semibold text-sm shadow-xs transition-all flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>
@@ -723,20 +723,20 @@ export const RecoveryFlow: React.FC<Props> = ({
       {step === 'set_new_password' && (
         <div>
           <div className="mb-5 text-center">
-            <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center mx-auto mb-3 shadow-inner">
+            <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center mx-auto mb-3 shadow-xs">
               <Lock className="w-6 h-6" />
             </div>
-            <h2 className="text-xl font-bold text-white tracking-tight">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
               Create New Password
             </h2>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               Your recovery challenge was verified. Choose a strong, new password.
             </p>
           </div>
 
           <form onSubmit={handleExecutePasswordReset} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
                 New Password
               </label>
               <div className="relative">
@@ -746,12 +746,12 @@ export const RecoveryFlow: React.FC<Props> = ({
                   onChange={e => setNewPassword(e.target.value)}
                   placeholder="Enter secure new password"
                   autoFocus
-                  className="w-full pl-4 pr-10 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm font-mono"
+                  className="w-full pl-4 pr-10 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 transition-all text-sm font-mono"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(prev => !prev)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -761,30 +761,30 @@ export const RecoveryFlow: React.FC<Props> = ({
               {newPassword.length > 0 && (
                 <div className="mt-2.5 space-y-2">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-400 font-medium">Strength:</span>
-                    <span className="font-bold text-white">{passwordAnalysis.label}</span>
+                    <span className="text-slate-500 font-medium">Strength:</span>
+                    <span className="font-bold text-slate-800">{passwordAnalysis.label}</span>
                   </div>
-                  <div className="grid grid-cols-4 gap-1.5 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                  <div className="grid grid-cols-4 gap-1.5 h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
                     <div className={`h-full rounded-full transition-all duration-300 ${passwordAnalysis.score >= 1 ? passwordAnalysis.color : 'bg-transparent'}`} />
                     <div className={`h-full rounded-full transition-all duration-300 ${passwordAnalysis.score >= 2 ? passwordAnalysis.color : 'bg-transparent'}`} />
                     <div className={`h-full rounded-full transition-all duration-300 ${passwordAnalysis.score >= 3 ? passwordAnalysis.color : 'bg-transparent'}`} />
                     <div className={`h-full rounded-full transition-all duration-300 ${passwordAnalysis.score >= 4 ? passwordAnalysis.color : 'bg-transparent'}`} />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-1 text-[11px] text-slate-400 pt-1">
-                    <div className={`flex items-center gap-1.5 ${passwordAnalysis.hasMinLength ? 'text-emerald-400' : 'text-slate-500'}`}>
+                  <div className="grid grid-cols-2 gap-1 text-[11px] text-slate-500 pt-1">
+                    <div className={`flex items-center gap-1.5 ${passwordAnalysis.hasMinLength ? 'text-emerald-600 font-medium' : 'text-slate-400'}`}>
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       <span>8+ characters</span>
                     </div>
-                    <div className={`flex items-center gap-1.5 ${passwordAnalysis.hasUppercase && passwordAnalysis.hasLowercase ? 'text-emerald-400' : 'text-slate-500'}`}>
+                    <div className={`flex items-center gap-1.5 ${passwordAnalysis.hasUppercase && passwordAnalysis.hasLowercase ? 'text-emerald-600 font-medium' : 'text-slate-400'}`}>
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       <span>Upper & lowercase</span>
                     </div>
-                    <div className={`flex items-center gap-1.5 ${passwordAnalysis.hasNumber ? 'text-emerald-400' : 'text-slate-500'}`}>
+                    <div className={`flex items-center gap-1.5 ${passwordAnalysis.hasNumber ? 'text-emerald-600 font-medium' : 'text-slate-400'}`}>
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       <span>At least 1 number</span>
                     </div>
-                    <div className={`flex items-center gap-1.5 ${passwordAnalysis.hasSpecialChar ? 'text-emerald-400' : 'text-slate-500'}`}>
+                    <div className={`flex items-center gap-1.5 ${passwordAnalysis.hasSpecialChar ? 'text-emerald-600 font-medium' : 'text-slate-400'}`}>
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       <span>Special symbol (!@#$)</span>
                     </div>
@@ -794,7 +794,7 @@ export const RecoveryFlow: React.FC<Props> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
                 Confirm New Password
               </label>
               <input
@@ -802,10 +802,10 @@ export const RecoveryFlow: React.FC<Props> = ({
                 value={confirmPassword}
                 onChange={e => setConfirmPassword(e.target.value)}
                 placeholder="Re-enter password to confirm"
-                className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm font-mono"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 transition-all text-sm font-mono"
               />
               {confirmPassword.length > 0 && newPassword !== confirmPassword && (
-                <p className="text-xs text-rose-400 mt-1.5 flex items-center gap-1">
+                <p className="text-xs text-rose-600 mt-1.5 flex items-center gap-1">
                   <AlertCircle className="w-3.5 h-3.5" /> Passwords do not match yet.
                 </p>
               )}
@@ -813,16 +813,16 @@ export const RecoveryFlow: React.FC<Props> = ({
 
             {/* Invalidate other sessions security option */}
             <div className="pt-2">
-              <label className="flex items-start gap-2.5 cursor-pointer text-xs text-slate-300">
+              <label className="flex items-start gap-2.5 cursor-pointer text-xs text-slate-700">
                 <input
                   type="checkbox"
                   checked={invalidateSessions}
                   onChange={e => setInvalidateSessions(e.target.checked)}
-                  className="mt-0.5 rounded bg-slate-800 border-slate-700 text-indigo-500 focus:ring-0 focus:ring-offset-0"
+                  className="mt-0.5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
                 />
                 <div>
-                  <span className="font-semibold text-white">Revoke all other active sessions</span>
-                  <p className="text-slate-400 text-[11px] mt-0.5">
+                  <span className="font-semibold text-slate-900">Revoke all other active sessions</span>
+                  <p className="text-slate-500 text-[11px] mt-0.5">
                     Recommended if your password was compromised or device was lost.
                   </p>
                 </div>
@@ -832,7 +832,7 @@ export const RecoveryFlow: React.FC<Props> = ({
             <button
               type="submit"
               disabled={isSubmitting || passwordAnalysis.score < 2 || newPassword !== confirmPassword}
-              className="w-full mt-4 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-semibold text-sm shadow-lg shadow-emerald-600/25 transition-all flex items-center justify-center gap-2"
+              className="w-full mt-4 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-semibold text-sm shadow-xs transition-all flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>
@@ -853,20 +853,20 @@ export const RecoveryFlow: React.FC<Props> = ({
       {/* STEP 4: SUCCESS CONFIRMATION */}
       {step === 'success' && (
         <div className="text-center py-4">
-          <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/10">
+          <div className="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center mx-auto mb-4 shadow-xs">
             <Sparkles className="w-8 h-8" />
           </div>
-          <h2 className="text-2xl font-bold text-white tracking-tight mb-2">
+          <h2 className="text-2xl font-bold text-slate-900 tracking-tight mb-2">
             Password Reset Successful!
           </h2>
-          <p className="text-xs text-slate-300 leading-relaxed max-w-sm mx-auto mb-6">
+          <p className="text-xs text-slate-600 leading-relaxed max-w-sm mx-auto mb-6">
             Your security credentials have been securely updated and hashed. A confirmation alert was sent to your inbox.
           </p>
 
           <div className="space-y-3">
             <button
               onClick={onBackToLogin}
-              className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/25 transition-all flex items-center justify-center gap-2"
+              className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-xs transition-all flex items-center justify-center gap-2"
             >
               <span>Return to Sign In</span>
               <ArrowRight className="w-4 h-4" />
